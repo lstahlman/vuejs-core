@@ -59,6 +59,7 @@ Never configure credentials or create a new integration for this skill.
 # First-Contribution Candidates
 
 ## Search Basis
+
 - Timestamp:
 - Issue access method:
 - Queries and labels inspected:
@@ -69,6 +70,7 @@ Never configure credentials or create a new integration for this skill.
 ## Recommended Candidates
 
 ### Candidate: #<number> - <title>
+
 - Issue:
 - Why it may fit:
 - Expected learning:

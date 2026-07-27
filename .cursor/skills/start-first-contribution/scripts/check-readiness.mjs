@@ -76,7 +76,9 @@ const nodeOk =
 
 const requiredPnpm = versionFromPackageManager(packageJson?.packageManager)
 const pnpmProbe = allowCommandProbes ? run('pnpm', ['--version'], root) : null
-const pnpmOk = Boolean(requiredPnpm && pnpmProbe?.ok && pnpmProbe.stdout === requiredPnpm)
+const pnpmOk = Boolean(
+  requiredPnpm && pnpmProbe?.ok && pnpmProbe.stdout === requiredPnpm,
+)
 
 const branchProbe = allowCommandProbes
   ? run('git', ['branch', '--show-current'], root)
@@ -102,12 +104,21 @@ if (input.browserRequired === false || input.intendedTaskType !== 'browser') {
   browserCapability = 'package-present-browser-binary-not-verified'
 }
 
-if (!repositoryVerified) gaps.push('Repository identity was not verified as Vue Core.')
-if (!nodeOk) gaps.push(`Node does not satisfy ${requiredNode} with .node-version ${nodeVersionFile || 'missing'}.`)
-if (!pnpmOk) gaps.push(`pnpm does not match packageManager ${packageJson?.packageManager || 'unknown'}.`)
+if (!repositoryVerified)
+  gaps.push('Repository identity was not verified as Vue Core.')
+if (!nodeOk)
+  gaps.push(
+    `Node does not satisfy ${requiredNode} with .node-version ${nodeVersionFile || 'missing'}.`,
+  )
+if (!pnpmOk)
+  gaps.push(
+    `pnpm does not match packageManager ${packageJson?.packageManager || 'unknown'}.`,
+  )
 if (!lockfilePresent) gaps.push('pnpm-lock.yaml is missing.')
-if (!dependenciesPresent) gaps.push('node_modules/.pnpm is missing; dependencies are not installed.')
-if (browserCapability === 'not-verified') gaps.push('Browser capability was not verified.')
+if (!dependenciesPresent)
+  gaps.push('node_modules/.pnpm is missing; dependencies are not installed.')
+if (browserCapability === 'not-verified')
+  gaps.push('Browser capability was not verified.')
 
 let classification = 'Unable to verify'
 if (repositoryVerified && (!nodeOk || !pnpmOk)) {

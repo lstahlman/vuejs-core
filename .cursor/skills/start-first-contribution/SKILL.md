@@ -42,9 +42,13 @@ Are you exploring Vue Core, looking for a first issue, or starting a known issue
 # First-Contribution Session
 
 ## Developer Goal
+
 ## Project Orientation Summary
+
 ## Environment Status
+
 ## Contribution Status
+
 ## Recommended Next Action
 ```
 

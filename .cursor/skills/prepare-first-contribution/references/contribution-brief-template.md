@@ -18,12 +18,12 @@
 ## Relevant Repository Areas
 
 | Area | Evidence | Classification | Confidence |
-|---|---|---|---|
+| ---- | -------- | -------------- | ---------- |
 
 ## Current Precedents
 
 | Precedent | What it shows | Classification | Limit |
-|---|---|---|---|
+| --------- | ------------- | -------------- | ----- |
 
 ## Expected Change Surface
 
@@ -86,7 +86,7 @@
 
 ## Risks and Questions
 
-- 
+-
 
 ## Suggested Plan Mode Prompt
 

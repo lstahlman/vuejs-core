@@ -33,28 +33,55 @@ function scoreCandidate(record) {
   const labelNames = names(record.labels)
   const hardExclusions = []
 
-  if ((record.assignees || []).length > 0) hardExclusions.push('Issue has an assignee.')
+  if ((record.assignees || []).length > 0)
+    hardExclusions.push('Issue has an assignee.')
   if (record.activeLinkedPullRequest || record.linkedPullRequests?.length > 0) {
     hardExclusions.push('Issue appears to have linked pull-request activity.')
   }
-  if (hasLabel(labelNames, 'has PR')) hardExclusions.push('Issue is labeled has PR.')
-  if (hasLabel(labelNames, 'need discussion')) hardExclusions.push('Issue needs discussion.')
-  if (hasLabel(labelNames, 'need guidance')) hardExclusions.push('Issue needs maintainer guidance.')
-  if (hasLabel(labelNames, 'need more info')) hardExclusions.push('Issue needs more information.')
-  if (hasLabel(labelNames, 'p4-important') || hasLabel(labelNames, 'p5-urgent')) {
-    hardExclusions.push('Issue priority is too high for default newcomer recommendation.')
+  if (hasLabel(labelNames, 'has PR'))
+    hardExclusions.push('Issue is labeled has PR.')
+  if (hasLabel(labelNames, 'need discussion'))
+    hardExclusions.push('Issue needs discussion.')
+  if (hasLabel(labelNames, 'need guidance'))
+    hardExclusions.push('Issue needs maintainer guidance.')
+  if (hasLabel(labelNames, 'need more info'))
+    hardExclusions.push('Issue needs more information.')
+  if (
+    hasLabel(labelNames, 'p4-important') ||
+    hasLabel(labelNames, 'p5-urgent')
+  ) {
+    hardExclusions.push(
+      'Issue priority is too high for default newcomer recommendation.',
+    )
   }
-  if (hasLabel(labelNames, 'security')) hardExclusions.push('Security work is excluded.')
-  if (record.newPublicApiSurface) hardExclusions.push('Task appears to add public API surface.')
-  if (record.privateOrCiOnlyValidation) hardExclusions.push('Validation is private or CI-only without a local path.')
+  if (hasLabel(labelNames, 'security'))
+    hardExclusions.push('Security work is excluded.')
+  if (record.newPublicApiSurface)
+    hardExclusions.push('Task appears to add public API surface.')
+  if (record.privateOrCiOnlyValidation)
+    hardExclusions.push(
+      'Validation is private or CI-only without a local path.',
+    )
   if (record.hasCurrentReproduction === false && record.type === 'bug-fix') {
     hardExclusions.push('Bug-fix candidate lacks a current reproduction.')
+  }
+
+  const conditionalReasons = []
+  if (record.maintainerConfirmed === false) {
+    conditionalReasons.push('Maintainer confirmation is missing.')
+  }
+  if (record.acceptanceCriteria === false) {
+    conditionalReasons.push('Acceptance criteria are not confirmed.')
   }
 
   const scope = scoreOr(
     record,
     'scope',
-    record.likelyRepositoryArea && !record.crossCutting ? 3 : record.crossCutting ? 1 : 0,
+    record.likelyRepositoryArea && !record.crossCutting
+      ? 3
+      : record.crossCutting
+        ? 1
+        : 0,
   )
   const clarity = scoreOr(
     record,
@@ -70,7 +97,13 @@ function scoreCandidate(record) {
   const localTestability = scoreOr(
     record,
     'localTestability',
-    record.localValidationPath ? 3 : record.moderateExternalSetup ? 2 : record.privateOrCiOnlyValidation ? 0 : 1,
+    record.localValidationPath
+      ? 3
+      : record.moderateExternalSetup
+        ? 2
+        : record.privateOrCiOnlyValidation
+          ? 0
+          : 1,
   )
   const architecturalRisk = scoreOr(
     record,
@@ -98,7 +131,9 @@ function scoreCandidate(record) {
   const documentationQuality = scoreOr(
     record,
     'documentationQuality',
-    record.hasCurrentReproduction && record.versions && record.acceptanceCriteria
+    record.hasCurrentReproduction &&
+      record.versions &&
+      record.acceptanceCriteria
       ? 3
       : record.hasCurrentReproduction
         ? 2
@@ -109,12 +144,19 @@ function scoreCandidate(record) {
   const learningValue = scoreOr(
     record,
     'learningValue',
-    record.likelyRepositoryArea && record.localValidationPath ? 3 : record.likelyRepositoryArea ? 2 : 1,
+    record.likelyRepositoryArea && record.localValidationPath
+      ? 3
+      : record.likelyRepositoryArea
+        ? 2
+        : 1,
   )
   const branchFit = scoreOr(
     record,
     'branchFit',
-    record.intendedBaseBranch === 'main' || record.intendedBaseBranch === 'minor' ? 3 : 1,
+    record.intendedBaseBranch === 'main' ||
+      record.intendedBaseBranch === 'minor'
+      ? 3
+      : 1,
   )
 
   const factors = {
@@ -130,13 +172,19 @@ function scoreCandidate(record) {
   }
   const total = Object.values(factors).reduce((sum, value) => sum + value, 0)
 
-  let confidence = record.commentsAvailable && record.ownershipVerified ? 'High' : 'Medium'
+  let confidence =
+    record.commentsAvailable && record.ownershipVerified ? 'High' : 'Medium'
   if (record.repositoryDiscoveredIdea) confidence = 'Low'
-  if (hardExclusions.length > 0) confidence = confidence === 'High' ? 'Medium' : confidence
+  if (conditionalReasons.length > 0 && confidence === 'High')
+    confidence = 'Medium'
+  if (hardExclusions.length > 0)
+    confidence = confidence === 'High' ? 'Medium' : confidence
 
   let recommendation = 'reject'
   if (hardExclusions.length > 0) {
     recommendation = 'excluded'
+  } else if (conditionalReasons.length > 0 && total >= 17) {
+    recommendation = 'conditional'
   } else if (total >= 22) {
     recommendation = 'recommend'
   } else if (total >= 17) {
@@ -153,6 +201,7 @@ function scoreCandidate(record) {
     factors,
     total,
     hardExclusions,
+    conditionalReasons,
     confidence,
     recommendation,
   }

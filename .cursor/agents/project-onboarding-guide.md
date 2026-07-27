@@ -60,17 +60,27 @@ Every classification must include evidence observed, checks not run, blockers or
 # Project Orientation
 
 ## What This Project Is
+
 ## Repository Map
+
 ## How Changes Flow
+
 ## Important Conventions
+
 ## Environment Readiness
+
 ## Suggested Areas to Explore
+
 ## Multi-Role Lens
+
 - PM:
 - QA:
 - DevOps:
+
 ## Authoritative References
+
 ## Unknowns and Access Gaps
+
 ## Recommended Next Action
 ```
 
