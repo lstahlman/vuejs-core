@@ -1,0 +1,27 @@
+---
+description: Vue Core package architecture, import-boundary, bundle, and hot-path conventions.
+globs: "packages/**/*.ts,packages-private/**/*.ts,packages/**/package.json,packages-private/**/package.json,scripts/aliases.js"
+alwaysApply: false
+---
+
+# Package boundaries
+
+Canonical guidance: [`.github/contributing.md`](../../.github/contributing.md) (project structure / importing packages), package `package.json` / `src/index.ts`, [`scripts/aliases.js`](../../scripts/aliases.js), [`rollup.config.js`](../../rollup.config.js). Prefer current adjacent patterns in the same package.
+
+## Required
+
+- Identify whether behavior is compiler/runtime, platform-agnostic/platform-specific, public/internal, and source/generated before selecting a file.
+- Use package-name imports for cross-package dependencies (`@vue/runtime-core`), never relative paths across package roots.
+- Declare dependencies when adding non-type imports or re-exported types.
+- Keep compiler and runtime dependency graphs separate.
+- Prefer existing package abstractions and current nearby patterns.
+- For hot-path/runtime work, call out allocation, branching, code size, and dev/prod impact.
+- Put development-only logic under `__DEV__` where consistent with current code.
+
+## Prohibited
+
+- No relative imports that cross package roots.
+- No compiler → runtime or runtime → compiler imports (do not expand existing type-only exceptions casually).
+- No casual extraction to `@vue/shared`; shared code must be environment-neutral and justify bundle reach.
+- No compiler-only `@vue/shared` helpers (e.g. `isHTMLTag`, `isSVGTag`) in runtime paths.
+- No package dependency change without checking build formats and published consumption.

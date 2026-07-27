@@ -1,0 +1,29 @@
+---
+description: Core Vue.js contribution, validation, and safety constraints.
+alwaysApply: true
+---
+
+# Vue Core basics
+
+Canonical guidance: [`.github/contributing.md`](../../.github/contributing.md), [`.github/maintenance.md`](../../.github/maintenance.md), [`package.json`](../../package.json), [`.node-version`](../../.node-version), [`pnpm-workspace.yaml`](../../pnpm-workspace.yaml).
+
+## Required
+
+- Start from the current task, branch, and working-tree state.
+- Read relevant repository guidance and the nearest current implementation/test precedents before editing.
+- Use the Node and pnpm versions declared by the repository (`packageManager` / `.node-version`).
+- Keep changes narrowly scoped; no unrelated cleanup or stylistic refactors.
+- Treat `main` vs `minor`, RFC need, dependency changes, and external-repository work as explicit plan items and **human checkpoints**.
+- Produce generated changes only through canonical repository commands.
+- Report validation commands, results, skipped checks, and uncertainty honestly.
+
+## Prohibited
+
+- Do not substitute npm or yarn for workspace operations.
+- Do not add/update dependencies, regenerate the lockfile, or permit new install/build scripts unless the task explicitly requires it and the user approves.
+- Do not hand-edit `dist`, rolled declarations, generated snapshots, or other generated output to satisfy tests.
+- Do not run destructive git/cleanup commands without explicit authorization.
+- Do not create/switch branches, commit, push, open or update a PR, merge, publish, release, or deploy without an explicit request.
+- Do not claim a check passed when it was skipped, unavailable, timed out, or failed.
+
+Keep package maps, test matrices, and long contribution prose out of this rule — use scoped rules and skills.

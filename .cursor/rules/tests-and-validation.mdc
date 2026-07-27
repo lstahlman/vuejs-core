@@ -1,0 +1,27 @@
+---
+description: Vue Core testing, snapshots, type tests, generated output, and validation conventions.
+globs: "packages/**/__tests__/**/*.{ts,tsx},packages-private/dts-test/**/*.{ts,tsx},packages-private/dts-built-test/**/*.{ts,tsx},**/*.snap,vitest.config.ts,.github/workflows/*.yml"
+alwaysApply: false
+---
+
+# Tests and validation
+
+Canonical guidance: [`.github/contributing.md`](../../.github/contributing.md) (contributing tests), [`.github/maintenance.md`](../../.github/maintenance.md), [`vitest.config.ts`](../../vitest.config.ts), [`.github/workflows/test.yml`](../../.github/workflows/test.yml), nearby package tests, `packages-private/dts-test/`, `packages-private/dts-built-test/`.
+
+## Required
+
+- Reproduce a bug with a failing focused test before or alongside the fix when feasible.
+- Use the smallest API and environment that proves the behavior.
+- Use `@vue/runtime-test` for platform-agnostic runtime behavior.
+- Add semantic assertions around important compiler output; snapshots are supporting evidence, not the only assertion.
+- Update snapshots by running the test tool, then review the diff.
+- Add dts tests when public inference, exports, or declarations change.
+- Build a risk-based validation ladder: focused test → package test → type/lint/format → e2e/size/benchmark/ecosystem only as justified.
+
+## Prohibited
+
+- No tests added only for coverage percentage.
+- No browser/jsdom dependency when a platform-agnostic test suffices.
+- No blanket snapshot acceptance without reading changed output.
+- No claim of full CI parity after only a targeted test.
+- No manual generated-output patching.

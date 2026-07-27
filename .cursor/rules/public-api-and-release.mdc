@@ -1,0 +1,24 @@
+---
+description: Apply when a Vue Core task adds or changes public APIs, template syntax, compiler options, exports, declarations, warnings, compatibility, documentation, or release behavior.
+alwaysApply: false
+---
+
+# Public API and release
+
+Canonical guidance: [`.github/contributing.md`](../../.github/contributing.md) (PR guidelines), [`.github/maintenance.md`](../../.github/maintenance.md), [`.github/commit-convention.md`](../../.github/commit-convention.md), package entry points and public types, [`CHANGELOG.md`](../../CHANGELOG.md). External: [vuejs/rfcs](https://github.com/vuejs/rfcs), [vuejs/docs](https://github.com/vuejs/docs), [vuejs/language-tools](https://github.com/vuejs/language-tools) only when the task crosses those boundaries.
+
+## Required
+
+- State whether the change adds API surface, changes common behavior, is breaking, affects types, or needs migration/documentation.
+- Recommend `minor` for new API surface and `main` otherwise, but ask a human to confirm before branch mutation or PR preparation.
+- Identify evidence for API acceptance or flag missing RFC/maintainer agreement.
+- Compare API value against userland alternatives and implementation/size complexity.
+- Identify external companion work without silently editing another repository.
+- Include compatibility, ecosystem CI, size, and release-note implications in the contribution summary.
+
+## Prohibited
+
+- Do not treat implementation as approval of a new API.
+- Do not declare an RFC unnecessary when evidence is ambiguous.
+- Do not edit changelog/release files unless the repository's current process and the task explicitly require it.
+- Do not publish preview or release packages autonomously.
