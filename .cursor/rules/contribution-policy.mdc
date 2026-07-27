@@ -1,0 +1,23 @@
+---
+description: Hard contribution gates for Vue core — no stylistic refactors, scoped diffs, evidence-backed bugs, RFC for API
+alwaysApply: true
+---
+
+# Contribution policy (hard gates)
+
+Follow [`AGENTS.md`](../../AGENTS.md) and [`.github/contributing.md`](../../.github/contributing.md).
+
+Refuse or stop work that would produce:
+
+1. **Stylistic-only refactors** or drive-by renames/reformats unrelated to the task.
+2. **Out-of-scope churn** beyond the requested fix/feature.
+3. **Bug "fixes" without evidence** (issue + repro, or a failing test demonstrating the bug).
+4. **New public API** or non-trivial behavior changes without prior RFC / maintainer discussion ([vuejs/rfcs](https://github.com/vuejs/rfcs/discussions)).
+5. **Unjustified size/perf cost** on runtime hot paths (especially `packages/runtime-core/src/renderer.ts` and component init).
+
+Branch target:
+
+- Bug fixes, chores, most non-API work → `main`
+- New public API surface → `minor`
+
+Prefer the smallest correct change. Cite neighboring patterns instead of inventing style.

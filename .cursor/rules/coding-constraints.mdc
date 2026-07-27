@@ -1,0 +1,37 @@
+---
+description: ES2016/bundle constraints, Prettier, feature flags, and env rules for Vue core packages
+globs: packages/**/*.ts,packages/**/*.tsx,packages-private/**/*.ts
+alwaysApply: false
+---
+
+# Coding constraints (core packages)
+
+Match Prettier: `semi: false`, `singleQuote: true`, `arrowParens: "avoid"`.
+
+## Forbidden in ESLint-enforced core packages
+
+- `const enum` (use non-const enums; build inlines them)
+- Object rest/spread (use `extend` from `@vue/shared`)
+- Optional chaining
+- `async` / `await`
+
+Prefer `slice` over `substring`. Use `import type`. Prefer `@ts-expect-error` over `@ts-ignore`.
+
+## Environment
+
+Most packages are env-agnostic — do not use `window`, `document`, or `require` outside DOM/Node-targeted packages (see `eslint.config.js` overrides).
+
+## Flags and DCE
+
+Use `packages/global.d.ts` constants (`__DEV__`, `__TEST__`, `__BROWSER__`, `__SSR__`, `__FEATURE_*`, …):
+
+- Gate warnings / expensive diagnostics with `__DEV__`.
+- Export DEV-only surface as `(__DEV__ ? impl : NOOP)` when required.
+- Keep optional subsystems behind `__FEATURE_*`.
+- Never leak compiler-only or DEV-only code into runtime prod builds.
+
+## Errors
+
+- Runtime: `warn()`, `callWithErrorHandling` / `callWithAsyncErrorHandling`, `ErrorCodes`
+- Compiler: `createCompilerError` via `context.onError` / `onWarn`; `assert()` for internals
+- Public API via `src/index.ts`; mark internals with `/** @internal */`

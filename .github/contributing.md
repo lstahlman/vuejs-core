@@ -11,6 +11,8 @@ Hi! I'm really excited that you are interested in contributing to Vue.js. Before
 - [Contributing Tests](#contributing-tests)
 - [Financial Contribution](#financial-contribution)
 
+**Agent-driven contributions:** If you are an AI coding agent (Cursor, Codex, or similar) — or reviewing one — follow [`AGENTS.md`](../AGENTS.md) and the Cursor/Codex package under [`.cursor/`](../.cursor/README.md).
+
 ## Issue Reporting Guidelines
 
 - Always use [https://new-issue.vuejs.org/](https://new-issue.vuejs.org/) to create new issues.
