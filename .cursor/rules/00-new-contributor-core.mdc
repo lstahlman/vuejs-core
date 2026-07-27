@@ -1,0 +1,21 @@
+---
+description: Vue Core newcomer contribution boundaries, authoritative sources, branch choice, scope, generated files, and validation honesty.
+alwaysApply: true
+---
+
+# Vue Core New Contributor Core
+
+When helping with a first contribution in this repository:
+
+- Treat `.github/contributing.md`, `.github/maintenance.md`, `.github/commit-convention.md`, `package.json`, `.github/workflows/ci.yml`, `.github/workflows/test.yml`, and relevant package manifests as the sources of truth.
+- Identify whether the task belongs on `main` or `minor`. Do not silently place new public API surface or feature behavior on `main`.
+- Keep the contribution focused on the intended behavior. Avoid unrelated refactors, style rewrites, and opportunistic cleanup.
+- Report validation honestly. Separate checks that passed locally, checks skipped locally, CI-only checks, and maintainer-only checks.
+- Do not hand-edit `dist/`, `temp/`, or other generated build output unless a current authoritative source explicitly requires a committed generated artifact.
+- Use package-level imports across workspace package boundaries. Do not introduce direct relative imports between packages.
+- Keep compiler packages from importing runtime packages and runtime packages from importing compiler packages. Move truly shared logic to `@vue/shared` only when justified by current package boundaries.
+- Check for companion source tests, type tests, browser/e2e validation, documentation, bundle-size, tree-shaking, and release implications based on the changed behavior.
+- Do not install dependencies, change git state, create branches, commit, push, claim issues, or comment on GitHub as part of onboarding unless the developer explicitly asks.
+- Preserve the repository's current formatter, linter, TypeScript, test, and commit-hook workflow rather than duplicating those tool rules here.
+
+This rule adds Vue-specific contribution judgment. Cursor's built-in search, setup, Plan Mode, Agent editing, browser automation, and review remain responsible for their normal work.
