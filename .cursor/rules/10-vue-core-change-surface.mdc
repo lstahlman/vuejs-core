@@ -1,0 +1,22 @@
+---
+description: Vue Core package, test, type, browser, performance, and companion-change guidance for source changes.
+globs: packages/**/*.ts, packages/**/*.tsx, packages/**/__tests__/**, packages-private/dts-test/**, packages-private/dts-built-test/**, packages-private/sfc-playground/**, packages-private/template-explorer/**
+alwaysApply: false
+---
+
+# Vue Core Change Surface
+
+When package or private-tool source files are in scope:
+
+- Identify the owning package and any public exports before editing.
+- Inspect adjacent `__tests__` files and package READMEs before choosing a test style.
+- Use the minimum API needed for a regression test.
+- Prefer `@vue/runtime-test` for platform-neutral renderer behavior. Use DOM or other platform runtimes only when platform behavior is under test.
+- For compiler changes, inspect both semantic assertions and snapshots. Do not treat snapshot approval alone as proof of correctness.
+- For public type or declaration changes, inspect `packages-private/dts-test` and `packages-private/dts-built-test`.
+- For DOM, hydration, playground, template explorer, or interaction changes, state whether browser automation and e2e tests are required.
+- For runtime changes, consider dev-only guards, tree shaking, bundle size, and hot-path cost.
+- Check package manifests when adding non-type imports or re-exporting types.
+- If a source change affects public documentation, record that the public docs source is the separate `vuejs/docs` repository unless current project guidance says otherwise.
+
+Do not convert observed pull-request patterns into universal file-pair rules. Do not update snapshots without reviewing the semantic output. Do not add dependencies only because an alias resolves locally.
