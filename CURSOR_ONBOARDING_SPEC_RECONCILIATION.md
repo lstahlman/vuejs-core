@@ -42,7 +42,7 @@ The committed script only probes; it does not install dependencies or run valida
 
 ## Corrected Issue-Discovery Model
 
-The current issue-access method is authenticated `gh` CLI in read-only mode. The skill must fetch current labels and inspect full issue context before recommending anything. Empty explicit queues are valid output, and no repository-discovered idea is approved work without maintainer confirmation.
+The current issue-access method is authenticated `gh` CLI in read-only mode. The skill must fetch current labels and inspect full issue context before recommending anything. Empty explicit queues are valid output, but discovery must also fetch a broad page of current open issues because some issues can be unlabeled or outside newcomer queues. No repository-discovered idea is approved work without maintainer confirmation.
 
 ## Corrected Cursor Artifact Set
 

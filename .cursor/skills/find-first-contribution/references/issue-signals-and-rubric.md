@@ -11,6 +11,18 @@ Fetch labels at runtime. Names can include emoji, spacing, and punctuation, so m
 - A contained `scope:` label helps route package search.
 - Clear reproduction, expected behavior, recent maintainer guidance, and nearby tests increase confidence.
 
+## Unlabeled Issues
+
+Unlabeled open issues can exist and must not be hidden by label-first discovery. After checking explicit newcomer/community queues and lower-risk labels, fetch a broad page of current open issues and identify any records with no labels.
+
+For unlabeled issues:
+
+- Treat missing labels as missing triage context, not as a positive or negative suitability signal by itself.
+- Fetch the full issue body and comments before scoring.
+- Cap confidence at Medium unless current ownership, reproduction, and maintainer guidance are verified.
+- Prefer `conditional` or `not-recommended` unless the issue has clear reproduction, bounded scope, local validation, no ownership conflict, and maintainer confirmation.
+- Reject or stop on the same hard exclusions used for labeled issues.
+
 ## Hard Exclusions Without Maintainer Confirmation
 
 - Active assignee, active linked PR, or recent "I am working on this" claim.

@@ -60,6 +60,8 @@ Use `/find-first-contribution` when no issue is selected. The skill fetches curr
 
 The skill searches newcomer/community signals first, then lower-risk labels only if needed. It checks assignees, linked PRs, comments, reproduction quality, likely package area, and local validation. Empty queues are valid output.
 
+If labeled queues are empty or incomplete, the skill also fetches a broad page of current open issues and identifies unlabeled records. Unlabeled issues are treated as triage-unknown until their full body, comments, ownership, reproduction, and validation path are inspected.
+
 Repository-discovered ideas are never approved work. They must be labeled:
 
 ```text

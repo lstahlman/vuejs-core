@@ -73,6 +73,9 @@ function scoreCandidate(record) {
   if (record.acceptanceCriteria === false) {
     conditionalReasons.push('Acceptance criteria are not confirmed.')
   }
+  if (labelNames.length === 0 && record.maintainerConfirmed !== true) {
+    conditionalReasons.push('Issue has no labels; triage context is missing.')
+  }
 
   const scope = scoreOr(
     record,

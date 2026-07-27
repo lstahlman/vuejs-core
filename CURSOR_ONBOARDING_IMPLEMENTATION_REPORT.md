@@ -50,20 +50,23 @@ The readiness script is read-only. It reports repository identity, branch, Node,
 
 Issue access used authenticated read-only `gh`. Current labels were fetched successfully, including `good first issue`, `help wanted`, `easy to merge`, `need more info`, `need guidance`, `need discussion`, `has PR`, and `need test`. The checked open `good first issue`, `help wanted`, and `easy to merge` queues returned empty arrays, so the package explicitly supports no-recommendation output.
 
+A follow-up broad open-issue check fetched current issues outside those queues and found two unlabeled records in the first 100 open issues: #13687 and #13586. The discovery skill now includes a broad open-issue fallback and treats unlabeled issues as triage-unknown until full issue context is inspected.
+
 ## 8. Plan Mode Handoff
 
 `prepare-first-contribution` produces a brief with issue evidence, likely repository areas, precedents, change surfaces, validation, role lenses, risks, and a ready-to-paste Plan Mode prompt. Plan Mode remains responsible for implementation planning.
 
 ## 9. Validation Results
 
-| Check                 | Result | Evidence                                                                                                                                      | Limitations                                                          |
-| --------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| Readiness helper      | Passed | `node .cursor/skills/start-first-contribution/scripts/check-readiness.mjs ...` returned `Partially ready` with Node v22.14.0 and pnpm 11.13.0 | Did not run repository validation by design                          |
-| Candidate scorer      | Passed | Sample unconfirmed issue returned `conditional`; owned unresolved issue returned `excluded`                                                   | Sample data only; real recommendations require live issue inspection |
-| Script syntax         | Passed | `node --check` passed for both helper scripts                                                                                                 | Syntax only                                                          |
-| Formatting            | Passed | `pnpm exec prettier --check .cursor CURSOR_ONBOARDING_SPEC_RECONCILIATION.md docs/cursor-onboarding-guide.md`                                 | Formatting only                                                      |
-| Structure/frontmatter | Passed | Custom Node check confirmed 14 expected files and required frontmatter                                                                        | Static validation only                                               |
-| Issue access          | Passed | `gh issue list` returned empty arrays for explicit queues; label check fetched 59 labels                                                      | No issue mutation performed                                          |
+| Check                 | Result | Evidence                                                                                                                                                 | Limitations                                                          |
+| --------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Readiness helper      | Passed | `node .cursor/skills/start-first-contribution/scripts/check-readiness.mjs ...` returned `Partially ready` with Node v22.14.0 and pnpm 11.13.0            | Did not run repository validation by design                          |
+| Candidate scorer      | Passed | Sample unconfirmed issue returned `conditional`; owned unresolved issue returned `excluded`                                                              | Sample data only; real recommendations require live issue inspection |
+| Script syntax         | Passed | `node --check` passed for both helper scripts                                                                                                            | Syntax only                                                          |
+| Formatting            | Passed | `pnpm exec prettier --check .cursor CURSOR_ONBOARDING_SPEC_RECONCILIATION.md CURSOR_ONBOARDING_IMPLEMENTATION_REPORT.md docs/cursor-onboarding-guide.md` | Formatting only                                                      |
+| Structure/frontmatter | Passed | Custom Node check confirmed 15 expected files and required frontmatter                                                                                   | Static validation only                                               |
+| Issue access          | Passed | `gh issue list` returned empty arrays for explicit queues; label check fetched 59 labels                                                                 | No issue mutation performed                                          |
+| Broad issue fallback  | Passed | Broad open-issue fetch returned current issues; first 100 included two unlabeled issues                                                                  | `gh issue list --search "no:label"` returned malformed placeholders  |
 
 ## 10. Deviations From the Research Specification
 
@@ -72,6 +75,7 @@ Issue access used authenticated read-only `gh`. Current labels were fetched succ
 - Readiness treats `.node-version` as LTS intent and `package.json` engines as the semver floor.
 - `Ready` is reserved for sessions with known validation success; this read-only script reports `Partially ready` when setup exists but no validation has run.
 - Issue discovery references dynamic labels because current priority labels include emoji and spacing.
+- Issue discovery includes a broad open-issue fallback because current work may be unlabeled or outside the explicit newcomer/community queues.
 
 ## 11. Maintenance Guidance
 

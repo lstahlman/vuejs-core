@@ -47,11 +47,13 @@ Never configure credentials or create a new integration for this skill.
    - minor-bug labels
    - `need test`
    - contained `scope:` labels matching the developer's interests
-5. Exclude high-risk, unresolved, already-owned, or already-implemented work before scoring.
-6. Fetch full issue body and accessible comments for every candidate considered for recommendation.
-7. Check assignees, linked PRs, recent activity, maintainer guidance, reproduction, likely package area, and local validation path.
-8. Use source search only to estimate package/test home. Do not design the implementation.
-9. Optionally pass normalized issue metadata to `scripts/score-candidates.mjs`.
+5. Also fetch a broad page of current open issues without relying on labels. Identify unlabeled issues and issues whose labels do not map to the known newcomer or lower-risk queues.
+6. Treat unlabeled issues as triage-unknown: inspect the full body, comments, ownership, linked PRs, reproduction, likely package area, and validation path before considering them. Do not recommend an unlabeled issue from list metadata alone.
+7. Exclude high-risk, unresolved, already-owned, or already-implemented work before scoring.
+8. Fetch full issue body and accessible comments for every candidate considered for recommendation.
+9. Check assignees, linked PRs, recent activity, maintainer guidance, reproduction, likely package area, and local validation path.
+10. Use source search only to estimate package/test home. Do not design the implementation.
+11. Optionally pass normalized issue metadata to `scripts/score-candidates.mjs`.
 
 ## Output
 
