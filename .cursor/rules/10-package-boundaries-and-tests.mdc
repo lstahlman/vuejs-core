@@ -1,0 +1,31 @@
+---
+description: Vue Core monorepo import boundaries, package dependency declarations, collocated tests, runtime-test usage, and type-test expectations
+globs: "packages/**/*.ts,packages/**/*.tsx,packages-private/**/*.ts,packages-private/**/*.tsx,packages-private/**/*.vue"
+alwaysApply: false
+---
+
+# Vue Core — package boundaries and tests
+
+Apply when editing package sources or tests. Canonical detail: `.github/contributing.md` (Project Structure, Importing Packages, Package Dependencies, Contributing Tests).
+
+## Imports and dependencies
+
+- Import other workspace packages by package name (usually `@vue/...`), never via cross-package relative paths.
+- Compiler packages must not import runtime packages, and runtime packages must not import compiler packages. Share via `@vue/shared` only when the utility truly belongs in the shared layer.
+- If package A has a non-type import from B, or re-exports a type from B, declare B in A’s `package.json` dependencies.
+- Do not invent a “shared” helper solely to avoid a small local duplication without weighing bundle and layering cost.
+- Keep compiler-only `@vue/shared` helpers (for example `isHTMLTag` / `isSVGTag`) out of runtime paths.
+
+## Tests
+
+- Colocate unit tests in the package’s `__tests__` directory.
+- Use the minimal API needed for the assertion.
+- Prefer `@vue/runtime-test` for platform-independent runtime / vnode behavior.
+- Use platform-specific runtimes only when asserting platform-specific behavior.
+- Public type / inference behavior belongs in `packages-private/dts-test` (and built-dts coverage via `pnpm test-dts` when relevant).
+- Coverage increases alone are not sufficient; tests must cover a meaningful case.
+- When updating compiler/codegen snapshots, add focused `expect(code).toMatch(...)` (or equivalent) assertions when a snapshot could pass with incorrect semantics.
+
+## Non-goals
+
+Do not move tests to a generic top-level test tree. Do not replace Vitest/ESLint docs with a second style guide.

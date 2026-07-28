@@ -1,0 +1,47 @@
+---
+description: Vue Core contributor boundaries, authoritative sources, branch selection, generated-output safety, and validation honesty
+globs:
+alwaysApply: true
+---
+
+# Vue Core — new contributor boundaries
+
+Before editing, read the authoritative sources for the task:
+
+- `.github/contributing.md`
+- `.github/maintenance.md`
+- `.github/commit-convention.md`
+- affected package `package.json`, sources, and tests
+- current issue / PR context on `vuejs/core`
+
+## Scope and branches
+
+- Keep changes limited to the selected task. No drive-by refactors or style-only churn.
+- Target `main` for bug fixes and non-public-API refactors; target `minor` for new API / features. Verify against the issue and contributing guide.
+- Features and public API additions need prior maintainer approval or RFC discussion. Do not invent approval.
+- Prefer a regression test that fails before a bug fix when fixing behavior.
+
+## Generated and restricted surfaces
+
+- Do not directly edit `packages/*/dist`, `temp/`, or generated declaration bundles. Change sources and regenerate via repository scripts.
+- Treat snapshot updates as semantic evidence: inspect generated output; do not treat a green snapshot alone as proof.
+- Do not run release, publish, or maintainer-only commands (including `/ecosystem-ci`) unless explicitly requested by a maintainer workflow the developer controls.
+
+## Validation honesty
+
+- State exactly which checks were run and which remain.
+- Distinguish local checks, CI checks, and maintainer-only verification.
+- `pnpm build` does not type-check; use `pnpm check` for types.
+- Do not claim a check passed when it was not executed.
+
+## Safety and external state
+
+- Do not access secrets.
+- Do not assign, claim, comment on, label, or edit GitHub issues/PRs unless the developer explicitly instructs that action.
+- Do not push, open, or merge pull requests unless the developer explicitly instructs that action.
+- Stop when acceptance criteria or ownership are unresolved.
+- When size, tree-shaking, or runtime hot paths are relevant (renderer, component instantiation), call that out rather than ignoring it.
+
+## Tooling non-goals
+
+Do not restate ESLint, Prettier, TypeScript, or Vitest rule catalogs. Use the repository’s configured tools and existing precedents.
