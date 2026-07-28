@@ -1,0 +1,47 @@
+---
+description: Vue runtime, reactivity, DOM, SSR, shared, and public-build contribution boundaries.
+globs: "packages/{reactivity,runtime-core,runtime-dom,server-renderer,shared,vue,vue-compat}/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Runtime and Reactivity Conventions
+
+Applies when editing runtime, reactivity, DOM, SSR, shared, or public `vue` / compat packages.
+
+## Tests first
+
+- For bug fixes, add a focused regression that fails before the fix when practical.
+- Prefer colocated `packages/*/__tests__` unit tests.
+- Use `runtime-test` for platform-agnostic renderer behavior.
+- Use DOM/jsdom coverage only when the behavior is DOM-specific.
+- Prefer direct semantic assertions over snapshot-only proof.
+
+## Package and import boundaries
+
+- Import across packages by package name, not relative cross-package paths.
+- Runtime code must not import compiler packages.
+- Keep shared helpers careful: do not pull compiler-only `@vue/shared` helpers such as `isHTMLTag` / `isSVGTag` into runtime bundles.
+- Preserve package dependency declarations when adding imports.
+
+## Size, perf, and tree-shaking
+
+- Runtime size and hot-path changes are high risk.
+- Be cautious in renderer / component-instantiation paths.
+- Guard development-only branches with `__DEV__` so they remain tree-shakable.
+- Do not claim performance wins without measurement or an obviously local improvement.
+
+## Change style
+
+- Prefer the smallest sufficient fix that matches nearby patterns.
+- Avoid broad cleanup, drive-by refactors, or unsupported public API expansion.
+- If public behavior or API changes, classify the work for the correct base branch (`main` vs `minor`) using installed contribution guidance.
+
+## Validation
+
+Typical focused sequence:
+
+1. Smallest relevant Vitest file/pattern
+2. `pnpm run check` and/or `pnpm run lint` when the change warrants it
+3. Build/size checks when runtime output size may move
+
+Report exactly what was and was not run.

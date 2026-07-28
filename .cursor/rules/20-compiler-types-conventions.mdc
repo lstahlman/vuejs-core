@@ -1,0 +1,45 @@
+---
+description: Vue compiler, SFC, code-generation, snapshot, and public type-test contribution boundaries.
+globs: "packages/compiler-*/**/*.{ts,tsx},packages-private/dts-*/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Compiler and Type-Test Conventions
+
+Applies when editing compiler packages or private declaration/type-test packages.
+
+## Boundaries
+
+- Keep compiler/runtime dependency separation.
+- Compiler code must not import runtime packages to solve a problem that belongs in shared/compiler layers.
+- Cross-package imports use package names.
+
+## Tests and snapshots
+
+- Place a minimal test near the owning compiler behavior under colocated `__tests__`.
+- Inspect generated code in snapshots; do not blindly refresh them.
+- For risky codegen/diagnostic output, add direct `toMatch` / semantic assertions in addition to snapshots.
+- Prefer the smallest focused Vitest project/file first.
+
+## Types
+
+- Source-facing public type behavior: prefer `packages-private/dts-test`.
+- Built declaration contract changes: include declaration/built tests as appropriate and run `pnpm run test-dts` before handoff when practical.
+- Full declaration build is slower; say when it was skipped.
+
+## Scope control
+
+- Avoid new syntax or public API without prior maintainer/RFC evidence.
+- Identify whether output or public type changes imply `main` vs `minor` before recommending a base branch.
+- Do not treat Vue language-tools / editor behavior as owned by this repository without explicit evidence.
+
+## Validation
+
+Typical focused sequence:
+
+1. Focused compiler or type-test command
+2. Snapshot semantic review
+3. `pnpm run check` / `pnpm run lint` as needed
+4. `pnpm run test-dts` when types or declarations changed
+
+Report exactly what was and was not run.

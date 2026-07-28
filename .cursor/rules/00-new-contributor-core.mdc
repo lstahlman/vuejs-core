@@ -1,0 +1,61 @@
+---
+description: Core Vue contributor boundaries for project identity, branch selection, scope, generated files, and honest validation.
+alwaysApply: true
+---
+
+# New Contributor Core Boundaries
+
+## Project identity
+
+- Treat the **installed checkout** as authoritative for commands, conventions, issues, branches, and PR targets.
+- Resolve identity with `git rev-parse --show-toplevel`, remotes, and high-level `gh repo view` when available.
+- Never substitute research upstream `vuejs/core` for the installed project at runtime.
+- If this checkout is a fork, keep issue discovery and any later branch/PR work on the installed project unless the developer explicitly selects another contribution scope.
+- If identity cannot be resolved, continue repository-only orientation and stop tracker/branch/PR recommendations.
+
+## Authoritative sources
+
+Read current installed files before advising or editing:
+
+- `.github/contributing.md`
+- `.github/maintenance.md`
+- `package.json`, `.node-version`, `pnpm-workspace.yaml`
+- `SECURITY.md`
+- any installed `AGENTS.md` or `.cursor/` guidance
+
+Installed evidence wins over research notes or remembered upstream defaults.
+
+## Branch selection
+
+Classify work before recommending a base branch:
+
+- Fixes, refactors, and chores → installed `main` when contribution guidance still says so
+- Public API or behavior additions → installed `minor` when contribution guidance still says so
+- If installed branch policy differs, follow the installed docs and mark the conflict
+
+Do not create branches, claims, comments, or PRs unless the developer explicitly asks later.
+
+## Scope and safety
+
+- Keep changes issue-focused; avoid unrelated refactors or stylistic cleanup.
+- Prefer current local precedents over inventing patterns.
+- Security reports belong in the private process in `SECURITY.md`, never public first-contribution discovery.
+- Do not access secrets or change external tracker state during onboarding.
+- Do not run environment provisioning (`pnpm install`, browser downloads, etc.) unless the developer explicitly requests setup.
+
+## Generated output and snapshots
+
+- Do not hand-edit or commit `packages/*/dist` or root `temp` unless current repository instructions explicitly require it.
+- Treat tracked `__snapshots__` as reviewable expectations, not disposable generated noise.
+- Review snapshot diffs for semantic correctness; a green snapshot update alone is not proof.
+
+## Commands and validation
+
+- Read current `package.json` scripts before recommending commands.
+- Prefer repository-native `pnpm` commands unless `nr` is already available and preferred.
+- State exactly what validation ran, passed, failed, or was not run.
+- Never invent maintainer approval, CI results, or issue suitability.
+
+## Non-goals
+
+This rule does not replace lint, formatting, type-checking, git, Plan Mode, or PR creation tooling.
