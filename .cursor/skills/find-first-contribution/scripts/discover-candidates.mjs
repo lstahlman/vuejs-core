@@ -153,7 +153,10 @@ function linkedPullRequests(issue) {
     const source = node?.source
     if (source?.__typename !== 'PullRequest') continue
     // Ignore cross-repo references (common false positives in timelines).
-    if (source.repository?.nameWithOwner && source.repository.nameWithOwner !== upstream) {
+    if (
+      source.repository?.nameWithOwner &&
+      source.repository.nameWithOwner !== upstream
+    ) {
       continue
     }
     refs.push({
@@ -223,7 +226,10 @@ function main() {
     labelInventory: {
       complete: labels.length > 0,
       count: labels.length,
-      names: labels.map(l => ({ name: l.name, description: l.description || '' })),
+      names: labels.map(l => ({
+        name: l.name,
+        description: l.description || '',
+      })),
     },
     primary: {},
     fallback: {},
@@ -268,7 +274,9 @@ function main() {
 
   for (const name of FALLBACK_LABELS) {
     if (!labelNames.has(name)) {
-      payload.fallback[name] = { error: 'label missing from inventory; refresh taxonomy' }
+      payload.fallback[name] = {
+        error: 'label missing from inventory; refresh taxonomy',
+      }
       continue
     }
     const label = issuesForLabel(name, 12)
@@ -336,7 +344,9 @@ function main() {
       `- ${name}: ${block.totalCount} open; ${block.openWithoutHardExclusion} without hard exclusion in first page`,
     )
     for (const issue of block.issues.slice(0, 5)) {
-      const flag = issue.excluded ? `REJECT (${issue.exclusionReasons.join('; ')})` : 'review'
+      const flag = issue.excluded
+        ? `REJECT (${issue.exclusionReasons.join('; ')})`
+        : 'review'
       console.log(`  - #${issue.number} [${flag}] ${issue.title}`)
     }
   }
@@ -349,24 +359,35 @@ function main() {
     `- unlabeled: ${payload.unlabeledOrUncategorized.unlabeled.length} (triage-unknown; conditional at best)`,
   )
   for (const issue of payload.unlabeledOrUncategorized.unlabeled.slice(0, 8)) {
-    const flag = issue.excluded ? `REJECT (${issue.exclusionReasons.join('; ')})` : 'review'
+    const flag = issue.excluded
+      ? `REJECT (${issue.exclusionReasons.join('; ')})`
+      : 'review'
     console.log(`  - #${issue.number} [${flag}] ${issue.title}`)
   }
   console.log(
     `- outside known primary/fallback signals: ${payload.unlabeledOrUncategorized.outsideKnownSignals.length}`,
   )
-  for (const issue of payload.unlabeledOrUncategorized.outsideKnownSignals.slice(0, 5)) {
-    const flag = issue.excluded ? `REJECT (${issue.exclusionReasons.join('; ')})` : 'review'
+  for (const issue of payload.unlabeledOrUncategorized.outsideKnownSignals.slice(
+    0,
+    5,
+  )) {
+    const flag = issue.excluded
+      ? `REJECT (${issue.exclusionReasons.join('; ')})`
+      : 'review'
     console.log(`  - #${issue.number} [${flag}] ${issue.title}`)
   }
   console.log('')
-  console.log('Next: inspect full issue bodies/comments and score with the skill rubric.')
+  console.log(
+    'Next: inspect full issue bodies/comments and score with the skill rubric.',
+  )
 }
 
 try {
   main()
 } catch (error) {
   console.error(`discover-candidates failed: ${error.message}`)
-  console.error('Fallback: ask the developer for an issue URL/export, or use public browser pages.')
+  console.error(
+    'Fallback: ask the developer for an issue URL/export, or use public browser pages.',
+  )
   process.exit(1)
 }

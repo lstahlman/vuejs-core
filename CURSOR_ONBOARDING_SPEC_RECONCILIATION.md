@@ -24,30 +24,30 @@ Material corrections:
 
 ## Material Decisions
 
-| Spec Item | Current Evidence | Decision | Reason | Implementation Impact |
-|---|---|---|---|---|
-| MVP package tree (2 rules, 1 subagent, 3 skills, guide, signal ref) | No `.cursor/`, no `AGENTS.md`; contributing/maintenance guides authoritative | Accept | Smallest coherent journey; no overlap with built-ins | Implement as specified under `.cursor/` + `docs/` |
-| Always-on `00-new-contributor-core.mdc` | `.github/contributing.md`, `maintenance.md`, commit convention, CI | Accept | Boundary rules tooling cannot choose | Keep short; reference paths, not restated lint rules |
-| Scoped `10-package-boundaries-and-tests.mdc` | Contributing project-structure / importing / tests sections | Accept | High miss rate for newcomers on package code | Auto-attach via package globs |
-| Deferred `20-sensitive-surfaces.mdc` | Core rule + prepare skill cover hot paths | Reject (for MVP) | Would add noise before proven gaps | Document as deferred |
-| `project-onboarding-guide` subagent | Docs confirm `.cursor/agents/*.md`, `readonly`, `is_background` | Accept + Modify | Add verified `readonly`/`is_background` fields | Frontmatter includes both |
-| `/start-first-contribution` skill | Skills docs: `disable-model-invocation`, slash invoke | Accept | Explicit entry; avoid auto noise | `disable-model-invocation: true` |
-| `find-first-contribution` + signal reference | 59 labels; GFI/HW empty; GraphQL label.issues works | Accept + Modify | Need GraphQL script + broad open-issue page | Add `scripts/discover-candidates.mjs` |
-| Unlabeled-issue fallback | Live open issues exist without newcomer labels | Accept + Modify | Empty GFI/HW must not end discovery | Script emits `unlabeledOrUncategorized` |
-| `prepare-first-contribution` | Plan Mode remains separate; brief handoff | Accept | Do not replace Plan Mode | Brief + suggested Plan Mode prompt only |
-| Environment readiness reference | `.node-version` `lts/*`, engines `>=20`, `packageManager` pnpm@11.13.0 | Accept | Smoke test proven: `pnpm test packages/shared --run` | Document five-state classifier |
-| `.cursor/environment.json` | None in repo; cloud env db-backed | Reject (MVP) | Spec deferred; avoid duplicating setup | Recommend built-in Set up Environment |
-| `.cursor/BUGBOT.md` | No Bugbot evidence in checkout | Reject (MVP) | Spec decision criteria unmet | Defer |
-| Custom MCP / issue service | Authenticated `gh` available | Reject | `gh` + GraphQL sufficient | No MCP added |
-| Issue mutation / claiming | Safety constraints | Accept | Skills remain read-only on tracker | Explicit bans in skills |
-| Role-specific subagents | Spec multi-role via shared sections | Accept | One orientation output with role notes | No extra agents |
-| Scripts in MVP | Spec optional; emoji label bugs observed | Modify | Thin GraphQL script improves reliability | Read-only Node script, no deps |
-| Docs path `docs/cursor-onboarding-guide.md` | No `docs/` directory previously | Accept | Create `docs/` for contributor-facing guide | New directory |
-| Historical demo fallback #14777/#14778 | Spec demo branch | Accept | Closed-issue learning mode only | Document in guide/skills |
-| Query via `gh issue list --label` examples in research | Returns empty stub objects for emoji labels | Replace | Unreliable in this environment | Document GraphQL as primary |
-| GitHub search `is:issue` + emoji labels | Returns PullRequest nodes despite `is:issue` | Narrow | Contaminates candidates | Filter `__typename == Issue` / use label.issues |
-| Vapor Roadmap #13687 | Still open; architectural risk | Accept | Discovery source only, not blanket approval | Signal reference + exclusions |
-| Fork remotes (`lstahlman/vuejs-core`) | Working remote is fork; upstream is vuejs/core | Modify | Tracker queries must target upstream | Skills pin `--repo vuejs/core` |
+| Spec Item                                                           | Current Evidence                                                             | Decision         | Reason                                               | Implementation Impact                                |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| MVP package tree (2 rules, 1 subagent, 3 skills, guide, signal ref) | No `.cursor/`, no `AGENTS.md`; contributing/maintenance guides authoritative | Accept           | Smallest coherent journey; no overlap with built-ins | Implement as specified under `.cursor/` + `docs/`    |
+| Always-on `00-new-contributor-core.mdc`                             | `.github/contributing.md`, `maintenance.md`, commit convention, CI           | Accept           | Boundary rules tooling cannot choose                 | Keep short; reference paths, not restated lint rules |
+| Scoped `10-package-boundaries-and-tests.mdc`                        | Contributing project-structure / importing / tests sections                  | Accept           | High miss rate for newcomers on package code         | Auto-attach via package globs                        |
+| Deferred `20-sensitive-surfaces.mdc`                                | Core rule + prepare skill cover hot paths                                    | Reject (for MVP) | Would add noise before proven gaps                   | Document as deferred                                 |
+| `project-onboarding-guide` subagent                                 | Docs confirm `.cursor/agents/*.md`, `readonly`, `is_background`              | Accept + Modify  | Add verified `readonly`/`is_background` fields       | Frontmatter includes both                            |
+| `/start-first-contribution` skill                                   | Skills docs: `disable-model-invocation`, slash invoke                        | Accept           | Explicit entry; avoid auto noise                     | `disable-model-invocation: true`                     |
+| `find-first-contribution` + signal reference                        | 59 labels; GFI/HW empty; GraphQL label.issues works                          | Accept + Modify  | Need GraphQL script + broad open-issue page          | Add `scripts/discover-candidates.mjs`                |
+| Unlabeled-issue fallback                                            | Live open issues exist without newcomer labels                               | Accept + Modify  | Empty GFI/HW must not end discovery                  | Script emits `unlabeledOrUncategorized`              |
+| `prepare-first-contribution`                                        | Plan Mode remains separate; brief handoff                                    | Accept           | Do not replace Plan Mode                             | Brief + suggested Plan Mode prompt only              |
+| Environment readiness reference                                     | `.node-version` `lts/*`, engines `>=20`, `packageManager` pnpm@11.13.0       | Accept           | Smoke test proven: `pnpm test packages/shared --run` | Document five-state classifier                       |
+| `.cursor/environment.json`                                          | None in repo; cloud env db-backed                                            | Reject (MVP)     | Spec deferred; avoid duplicating setup               | Recommend built-in Set up Environment                |
+| `.cursor/BUGBOT.md`                                                 | No Bugbot evidence in checkout                                               | Reject (MVP)     | Spec decision criteria unmet                         | Defer                                                |
+| Custom MCP / issue service                                          | Authenticated `gh` available                                                 | Reject           | `gh` + GraphQL sufficient                            | No MCP added                                         |
+| Issue mutation / claiming                                           | Safety constraints                                                           | Accept           | Skills remain read-only on tracker                   | Explicit bans in skills                              |
+| Role-specific subagents                                             | Spec multi-role via shared sections                                          | Accept           | One orientation output with role notes               | No extra agents                                      |
+| Scripts in MVP                                                      | Spec optional; emoji label bugs observed                                     | Modify           | Thin GraphQL script improves reliability             | Read-only Node script, no deps                       |
+| Docs path `docs/cursor-onboarding-guide.md`                         | No `docs/` directory previously                                              | Accept           | Create `docs/` for contributor-facing guide          | New directory                                        |
+| Historical demo fallback #14777/#14778                              | Spec demo branch                                                             | Accept           | Closed-issue learning mode only                      | Document in guide/skills                             |
+| Query via `gh issue list --label` examples in research              | Returns empty stub objects for emoji labels                                  | Replace          | Unreliable in this environment                       | Document GraphQL as primary                          |
+| GitHub search `is:issue` + emoji labels                             | Returns PullRequest nodes despite `is:issue`                                 | Narrow           | Contaminates candidates                              | Filter `__typename == Issue` / use label.issues      |
+| Vapor Roadmap #13687                                                | Still open; architectural risk                                               | Accept           | Discovery source only, not blanket approval          | Signal reference + exclusions                        |
+| Fork remotes (`lstahlman/vuejs-core`)                               | Working remote is fork; upstream is vuejs/core                               | Modify           | Tracker queries must target upstream                 | Skills pin `--repo vuejs/core`                       |
 
 ## Corrected Onboarding Baseline
 
@@ -66,14 +66,14 @@ Contribution types remain: bug fixes with reproduction/tests → `main`; public 
 
 ## Corrected Environment Model
 
-| Check | Observed 2026-07-28 |
-|---|---|
-| Node | `v22.14.0` (satisfies `>=20`; `.node-version` is `lts/*`) |
-| pnpm | `11.13.0` matches `packageManager` |
-| Dependencies | `node_modules` present; install already applied |
-| Bounded smoke | `pnpm test packages/shared --run` → 6 files / 60 tests passed |
-| Dev container / Docker / Nix | Not present |
-| Repo cloud env file | Not present |
+| Check                            | Observed 2026-07-28                                                                                            |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Node                             | `v22.14.0` (satisfies `>=20`; `.node-version` is `lts/*`)                                                      |
+| pnpm                             | `11.13.0` matches `packageManager`                                                                             |
+| Dependencies                     | `node_modules` present; install already applied                                                                |
+| Bounded smoke                    | `pnpm test packages/shared --run` → 6 files / 60 tests passed                                                  |
+| Dev container / Docker / Nix     | Not present                                                                                                    |
+| Repo cloud env file              | Not present                                                                                                    |
 | Classification for this checkout | **Ready** (unit); e2e/browser and `test-dts` remain task-dependent (**Partially ready** if those are required) |
 
 Classifier states unchanged: Ready / Partially ready / Setup available but not applied / Not ready / Unable to verify. Orientation must not install dependencies.
@@ -127,15 +127,15 @@ CURSOR_ONBOARDING_IMPLEMENTATION_REPORT.md
 
 ## Deferred or Rejected Recommendations
 
-| Item | Decision | Reason |
-|---|---|---|
-| `.cursor/environment.json` | Deferred | Cloud setup already works via personal env; validate before committing |
-| `.cursor/BUGBOT.md` | Deferred | No Bugbot install / omission evidence |
-| `20-sensitive-surfaces.mdc` | Deferred | Prepare skill + core rule sufficient for MVP |
-| Custom MCP issue server | Rejected | `gh` GraphQL covers needs |
-| Generic coding / review / planning skills | Rejected | Built-in Cursor capabilities |
-| Automatic issue claim/comment | Rejected | Safety / maintainer process |
-| Historical hard-coded “good first issue” | Rejected | Queues empty; suitability is ephemeral |
+| Item                                      | Decision | Reason                                                                 |
+| ----------------------------------------- | -------- | ---------------------------------------------------------------------- |
+| `.cursor/environment.json`                | Deferred | Cloud setup already works via personal env; validate before committing |
+| `.cursor/BUGBOT.md`                       | Deferred | No Bugbot install / omission evidence                                  |
+| `20-sensitive-surfaces.mdc`               | Deferred | Prepare skill + core rule sufficient for MVP                           |
+| Custom MCP issue server                   | Rejected | `gh` GraphQL covers needs                                              |
+| Generic coding / review / planning skills | Rejected | Built-in Cursor capabilities                                           |
+| Automatic issue claim/comment             | Rejected | Safety / maintainer process                                            |
+| Historical hard-coded “good first issue”  | Rejected | Queues empty; suitability is ephemeral                                 |
 
 ## Open Questions
 

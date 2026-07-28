@@ -44,25 +44,45 @@ Historical learning mode (demo/teaching only): closed issue + merged PR pairs su
 # First-Contribution Brief
 
 ## Issue and Intended Outcome
+
 ## Current Status and Ownership
+
 ## Acceptance Evidence
+
 ## Relevant Repository Areas
+
 ## Current Precedents
+
 ## Expected Change Surface
+
 ## Tests and Documentation
+
 ## Generated and Public-Surface Implications
+
 ## Environment Readiness
+
 ## Validation
+
 ### Local
+
 ### CI
+
 ### Maintainer-Only
+
 ## Review and Ownership
+
 ## Release and Branch
+
 ## Role Handoffs
+
 ### PM
+
 ### QA
+
 ### DevOps
+
 ## Risks and Questions
+
 ## Suggested Plan Mode Prompt
 ```
 
@@ -102,11 +122,11 @@ material clarifying questions, and return an editable file-specific plan.
 
 ## Failure behavior
 
-| Condition | Behavior |
-|---|---|
-| Closed/completed issue | Stop unless historical learning mode was requested |
-| Active linked PR/assignee | Stop and explain |
-| No acceptance evidence | Maintainer-confirmation brief; no Plan Mode prompt |
-| Environment not ready | Still produce repo context; recommend setup before Plan Mode execution |
-| Broad task | Offer decomposition options; do not invent approval for a smaller subtask |
-| Cross-repo docs/RFC | Record as dependency, not automatic edit |
+| Condition                 | Behavior                                                                  |
+| ------------------------- | ------------------------------------------------------------------------- |
+| Closed/completed issue    | Stop unless historical learning mode was requested                        |
+| Active linked PR/assignee | Stop and explain                                                          |
+| No acceptance evidence    | Maintainer-confirmation brief; no Plan Mode prompt                        |
+| Environment not ready     | Still produce repo context; recommend setup before Plan Mode execution    |
+| Broad task                | Offer decomposition options; do not invent approval for a smaller subtask |
+| Cross-repo docs/RFC       | Record as dependency, not automatic edit                                  |

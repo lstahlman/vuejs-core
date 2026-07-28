@@ -12,15 +12,15 @@ This repository includes a small Cursor package that helps a new developer start
 
 ## What it deliberately leaves to Cursor built-ins
 
-| Built-in | Package does not replace it |
-|---|---|
-| Search / Explore | Custom codebase search |
-| Set up Environment | Dependency installer / provisioner |
-| Plan Mode | Generic planning skill |
-| Agent edit + terminal | Coding orchestrator |
-| Browser | Generic browser automation skill |
-| Review / Bugbot / security review | Custom review bot |
-| GitHub integration / `gh` | Custom issue tracker service |
+| Built-in                          | Package does not replace it        |
+| --------------------------------- | ---------------------------------- |
+| Search / Explore                  | Custom codebase search             |
+| Set up Environment                | Dependency installer / provisioner |
+| Plan Mode                         | Generic planning skill             |
+| Agent edit + terminal             | Coding orchestrator                |
+| Browser                           | Generic browser automation skill   |
+| Review / Bugbot / security review | Custom review bot                  |
+| GitHub integration / `gh`         | Custom issue tracker service       |
 
 ## Invoke `/start-first-contribution`
 
@@ -53,13 +53,13 @@ It returns a bounded map: packages, change flow (`main` vs `minor`), conventions
 
 ## Environment-readiness meanings
 
-| State | Meaning |
-|---|---|
-| Ready | Node/pnpm/deps OK; bounded unit smoke works; task extras available |
-| Partially ready | Unit baseline OK; task needs browser, dts, playground, etc. |
-| Setup available but not applied | Repo documents setup, but this checkout has not installed it |
-| Not ready | Unsupported toolchain or failed prerequisites |
-| Unable to verify | No reliable way to inspect the environment |
+| State                           | Meaning                                                            |
+| ------------------------------- | ------------------------------------------------------------------ |
+| Ready                           | Node/pnpm/deps OK; bounded unit smoke works; task extras available |
+| Partially ready                 | Unit baseline OK; task needs browser, dts, playground, etc.        |
+| Setup available but not applied | Repo documents setup, but this checkout has not installed it       |
+| Not ready                       | Unsupported toolchain or failed prerequisites                      |
+| Unable to verify                | No reliable way to inspect the environment                         |
 
 Checks are non-mutating by default. Setup recommendation is `pnpm install` or Cursor **Set up Environment** — the package does not auto-install.
 
@@ -91,11 +91,11 @@ Signal taxonomy: `.cursor/skills/find-first-contribution/references/project-cont
 
 ### Access methods and fallbacks
 
-1. Cursor GitHub integration  
-2. Approved MCP (optional)  
-3. Authenticated `gh` + GraphQL script  
-4. Public browser  
-5. Manual issue URL / export  
+1. Cursor GitHub integration
+2. Approved MCP (optional)
+3. Authenticated `gh` + GraphQL script
+4. Public browser
+5. Manual issue URL / export
 
 If access fails, the skills must not invent candidates.
 
@@ -115,15 +115,15 @@ The prepare skill stops at the brief. Copy the **Suggested Plan Mode Prompt** in
 
 ## Maintainer updates
 
-| Artifact | When to update | Source of truth |
-|---|---|---|
-| Rules under `.cursor/rules/` | Contributor/architecture guidance changes | `.github/contributing.md`, `maintenance.md` |
-| `project-contribution-signals.md` | Every discovery run / ≤30 days | Live `vuejs/core` labels, forms, comments, roadmaps |
-| `discover-candidates.mjs` label lists | When inventory names change | `gh label list` |
-| `environment-readiness.md` | Node/pnpm/script/CI changes | `package.json`, workflows |
-| `vue-change-surfaces.md` | Package/CI/layout changes | Workspace + contributing guide |
-| Skill contracts | Cursor release behavior changes | Official Cursor docs |
-| This guide | Journey or limitations change | Package contracts |
+| Artifact                              | When to update                            | Source of truth                                     |
+| ------------------------------------- | ----------------------------------------- | --------------------------------------------------- |
+| Rules under `.cursor/rules/`          | Contributor/architecture guidance changes | `.github/contributing.md`, `maintenance.md`         |
+| `project-contribution-signals.md`     | Every discovery run / ≤30 days            | Live `vuejs/core` labels, forms, comments, roadmaps |
+| `discover-candidates.mjs` label lists | When inventory names change               | `gh label list`                                     |
+| `environment-readiness.md`            | Node/pnpm/script/CI changes               | `package.json`, workflows                           |
+| `vue-change-surfaces.md`              | Package/CI/layout changes                 | Workspace + contributing guide                      |
+| Skill contracts                       | Cursor release behavior changes           | Official Cursor docs                                |
+| This guide                            | Journey or limitations change             | Package contracts                                   |
 
 Revalidation tip: run the discovery script and compare exact label strings (watch for `:broom:  p1-chore` double spaces and shortcode vs emoji names).
 

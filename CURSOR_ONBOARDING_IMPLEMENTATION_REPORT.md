@@ -10,16 +10,16 @@ No production dependencies were added. No issues were claimed, commented on, or 
 
 ## 2. Repository and Onboarding Findings
 
-| Finding | Evidence |
-|---|---|
-| Checkout matches research snapshot | Commit `b5f8518379b77c3b62a7a9d2b52f6c76cda09bd5`, version `3.5.40` |
-| No prior Cursor agent package on `main` | No `.cursor/`, no `AGENTS.md`, no `.agents/` |
-| Authoritative contributor docs present | `.github/contributing.md`, `maintenance.md`, `commit-convention.md` |
-| Workspace shape confirmed | `packages/*`, `packages-private/*`, `scripts/*` |
-| Working remote is a fork | `lstahlman/vuejs-core`; tracker queries pin `vuejs/core` |
-| Official newcomer labels empty | GraphQL: `good first issue` 0, `help wanted` 0 |
-| Label inventory complete | 59 labels via authenticated `gh label list` |
-| Environment ready for unit work | Node `v22.14.0`, pnpm `11.13.0`, deps present, `pnpm test packages/shared --run` passed (6 files / 60 tests) |
+| Finding                                 | Evidence                                                                                                     |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Checkout matches research snapshot      | Commit `b5f8518379b77c3b62a7a9d2b52f6c76cda09bd5`, version `3.5.40`                                          |
+| No prior Cursor agent package on `main` | No `.cursor/`, no `AGENTS.md`, no `.agents/`                                                                 |
+| Authoritative contributor docs present  | `.github/contributing.md`, `maintenance.md`, `commit-convention.md`                                          |
+| Workspace shape confirmed               | `packages/*`, `packages-private/*`, `scripts/*`                                                              |
+| Working remote is a fork                | `lstahlman/vuejs-core`; tracker queries pin `vuejs/core`                                                     |
+| Official newcomer labels empty          | GraphQL: `good first issue` 0, `help wanted` 0                                                               |
+| Label inventory complete                | 59 labels via authenticated `gh label list`                                                                  |
+| Environment ready for unit work         | Node `v22.14.0`, pnpm `11.13.0`, deps present, `pnpm test packages/shared --run` passed (6 files / 60 tests) |
 
 ## 3. Specification Reconciliation
 
@@ -29,19 +29,19 @@ Largest corrections: GraphQL-based issue discovery (emoji/shortcode label toolin
 
 ## 4. Implemented Cursor Package
 
-| Path | Primitive | Onboarding Purpose | Built-In Capability Reused | Evidence |
-|---|---|---|---|---|
-| `.cursor/rules/00-new-contributor-core.mdc` | Always-on rule | Boundaries, branches, generated files, validation honesty, external-state safety | Agent rules | Contributing + maintenance guides |
-| `.cursor/rules/10-package-boundaries-and-tests.mdc` | Scoped rule | Import/dependency/test conventions when package files are in context | Auto-attached rules | Contributing project-structure sections |
-| `.cursor/agents/project-onboarding-guide.md` | Read-only subagent | Bounded orientation + readiness classification | Search/Explore/terminal; `readonly` | Cursor subagent docs + repo sources |
-| `.cursor/skills/start-first-contribution/SKILL.md` | Manual skill | Session entry and routing | Slash skills | Product journey |
-| `.../references/environment-readiness.md` | Reference | Stable readiness matrix | Terminal / Set up Environment | package.json, workflows, smoke test |
-| `.cursor/skills/find-first-contribution/SKILL.md` | Manual skill | Live taxonomy + candidate ranking | GitHub/`gh` | Labels + issues |
-| `.../references/project-contribution-signals.md` | Reference | Versioned signal taxonomy | Skill progressive loading | 59-label inventory |
-| `.../scripts/discover-candidates.mjs` | Read-only script | Reliable label/issue queries + hard exclusions + unlabeled scan | `gh` GraphQL | Validated against live tracker |
-| `.cursor/skills/prepare-first-contribution/SKILL.md` | Manual skill | Contribution brief + Plan Mode prompt | Search/Explore/Plan Mode | Contributing + change-surface map |
-| `.../references/vue-change-surfaces.md` | Reference | Compact package/test/docs/generated map | Skill progressive loading | Workspace layout |
-| `docs/cursor-onboarding-guide.md` | Human guide | Invocation, limitations, maintenance, demo | Docs | Package contracts |
+| Path                                                 | Primitive          | Onboarding Purpose                                                               | Built-In Capability Reused          | Evidence                                |
+| ---------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------- | ----------------------------------- | --------------------------------------- |
+| `.cursor/rules/00-new-contributor-core.mdc`          | Always-on rule     | Boundaries, branches, generated files, validation honesty, external-state safety | Agent rules                         | Contributing + maintenance guides       |
+| `.cursor/rules/10-package-boundaries-and-tests.mdc`  | Scoped rule        | Import/dependency/test conventions when package files are in context             | Auto-attached rules                 | Contributing project-structure sections |
+| `.cursor/agents/project-onboarding-guide.md`         | Read-only subagent | Bounded orientation + readiness classification                                   | Search/Explore/terminal; `readonly` | Cursor subagent docs + repo sources     |
+| `.cursor/skills/start-first-contribution/SKILL.md`   | Manual skill       | Session entry and routing                                                        | Slash skills                        | Product journey                         |
+| `.../references/environment-readiness.md`            | Reference          | Stable readiness matrix                                                          | Terminal / Set up Environment       | package.json, workflows, smoke test     |
+| `.cursor/skills/find-first-contribution/SKILL.md`    | Manual skill       | Live taxonomy + candidate ranking                                                | GitHub/`gh`                         | Labels + issues                         |
+| `.../references/project-contribution-signals.md`     | Reference          | Versioned signal taxonomy                                                        | Skill progressive loading           | 59-label inventory                      |
+| `.../scripts/discover-candidates.mjs`                | Read-only script   | Reliable label/issue queries + hard exclusions + unlabeled scan                  | `gh` GraphQL                        | Validated against live tracker          |
+| `.cursor/skills/prepare-first-contribution/SKILL.md` | Manual skill       | Contribution brief + Plan Mode prompt                                            | Search/Explore/Plan Mode            | Contributing + change-surface map       |
+| `.../references/vue-change-surfaces.md`              | Reference          | Compact package/test/docs/generated map                                          | Skill progressive loading           | Workspace layout                        |
+| `docs/cursor-onboarding-guide.md`                    | Human guide        | Invocation, limitations, maintenance, demo                                       | Docs                                | Package contracts                       |
 
 ## 5. New Developer Journey
 
@@ -65,17 +65,17 @@ This checkout classification on 2026-07-28: **Ready** for unit work. Task-specif
 
 ## 7. First-Contribution Discovery Behavior
 
-| Item | Result |
-|---|---|
-| Access method | Authenticated `gh` + GraphQL script |
-| Taxonomy method | Full label inventory (59) + forms/routing + priority/scope/workflow labels + roadmap/maintainer phrases |
-| Primary signals | `good first issue`, `help wanted` (both 0 open) |
+| Item             | Result                                                                                                                         |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Access method    | Authenticated `gh` + GraphQL script                                                                                            |
+| Taxonomy method  | Full label inventory (59) + forms/routing + priority/scope/workflow labels + roadmap/maintainer phrases                        |
+| Primary signals  | `good first issue`, `help wanted` (both 0 open)                                                                                |
 | Fallback signals | `🔩 p2-edge-case`, `:hammer: p3-minor-bug`, `:cake: p2-nice-to-have`, `:broom:  p1-chore`, `scope: playground`, `scope: types` |
-| Unlabeled path | Broad open-issue page → `unlabeledOrUncategorized` (triage-unknown / outside-known-signals) |
-| Query strategy | GraphQL `label.issues` + recent `repository.issues`; independent linked-PR scan; exclude cross-repo PR refs |
-| Ranking | Rubric after hard exclusions; ≤3 results; conditional when no invitation |
-| Confidence | High on exclusions/ownership; medium on fallback/unlabeled suitability without maintainer invitation |
-| Limitations | Board fields unused; suitability changes quickly; no invented candidates when access fails |
+| Unlabeled path   | Broad open-issue page → `unlabeledOrUncategorized` (triage-unknown / outside-known-signals)                                    |
+| Query strategy   | GraphQL `label.issues` + recent `repository.issues`; independent linked-PR scan; exclude cross-repo PR refs                    |
+| Ranking          | Rubric after hard exclusions; ≤3 results; conditional when no invitation                                                       |
+| Confidence       | High on exclusions/ownership; medium on fallback/unlabeled suitability without maintainer invitation                           |
+| Limitations      | Board fields unused; suitability changes quickly; no invented candidates when access fails                                     |
 
 Fallback survivors without exact newcomer labels **do** appear as review options (labeled fallback pools and unlabeled/uncategorized scan). They must be presented as conditional / not exact newcomer matches.
 
@@ -85,22 +85,22 @@ Fallback survivors without exact newcomer labels **do** appear as review options
 
 ## 9. Validation Results
 
-| Check | Result | Evidence | Limitations |
-|---|---|---|---|
-| Required files present | Pass | Structure script | — |
-| Rule `.mdc` frontmatter | Pass | `alwaysApply` / globs present | Runtime attachment not exercised in IDE UI |
-| Skill names match folders + `disable-model-invocation` | Pass | Frontmatter parse | Slash-menu discovery not runtime-tested here |
-| Subagent frontmatter (`readonly`, `is_background`) | Pass | Matches Cursor docs | Enforcement depends on Cursor edition |
-| No credentials added | Pass | Review of added files | Mentions of “secrets” are policy text only |
-| Existing Cursor config preserved | Pass | None existed on `main`; package added cleanly | — |
-| Label inventory | Pass | 59 labels | — |
-| Primary newcomer queries | Pass | 0 / 0 open | — |
-| Discovery script | Pass | Primary/fallback/unlabeled sections | Rate limits possible |
-| Linked-PR exclusion | Pass | Timeline + cross-repo filter | Timeline completeness varies |
-| Environment smoke | Pass | `pnpm test packages/shared --run` | Not full CI matrix |
-| Known-issue / not-ready / access-fallback paths | Spec’d + statically reviewed | Skill failure tables | Full multi-session UX not run in IDE |
-| Plan Mode handoff runtime | Not executed | Prompt template present | Do not claim Plan Mode UI opened |
-| Issue mutation absent | Pass | Read-only `gh`/GraphQL only | — |
+| Check                                                  | Result                       | Evidence                                      | Limitations                                  |
+| ------------------------------------------------------ | ---------------------------- | --------------------------------------------- | -------------------------------------------- |
+| Required files present                                 | Pass                         | Structure script                              | —                                            |
+| Rule `.mdc` frontmatter                                | Pass                         | `alwaysApply` / globs present                 | Runtime attachment not exercised in IDE UI   |
+| Skill names match folders + `disable-model-invocation` | Pass                         | Frontmatter parse                             | Slash-menu discovery not runtime-tested here |
+| Subagent frontmatter (`readonly`, `is_background`)     | Pass                         | Matches Cursor docs                           | Enforcement depends on Cursor edition        |
+| No credentials added                                   | Pass                         | Review of added files                         | Mentions of “secrets” are policy text only   |
+| Existing Cursor config preserved                       | Pass                         | None existed on `main`; package added cleanly | —                                            |
+| Label inventory                                        | Pass                         | 59 labels                                     | —                                            |
+| Primary newcomer queries                               | Pass                         | 0 / 0 open                                    | —                                            |
+| Discovery script                                       | Pass                         | Primary/fallback/unlabeled sections           | Rate limits possible                         |
+| Linked-PR exclusion                                    | Pass                         | Timeline + cross-repo filter                  | Timeline completeness varies                 |
+| Environment smoke                                      | Pass                         | `pnpm test packages/shared --run`             | Not full CI matrix                           |
+| Known-issue / not-ready / access-fallback paths        | Spec’d + statically reviewed | Skill failure tables                          | Full multi-session UX not run in IDE         |
+| Plan Mode handoff runtime                              | Not executed                 | Prompt template present                       | Do not claim Plan Mode UI opened             |
+| Issue mutation absent                                  | Pass                         | Read-only `gh`/GraphQL only                   | —                                            |
 
 ## 10. Deviations From the Research Specification
 

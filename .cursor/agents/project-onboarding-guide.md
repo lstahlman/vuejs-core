@@ -63,18 +63,31 @@ When setup is missing, recommend repository `pnpm install` or Cursor **Set up En
 # Project Orientation
 
 ## What This Project Is
+
 ## Repository Map
+
 ## How Changes Flow
+
 ## Important Conventions
+
 ## Environment Readiness
+
 ## Suggested Areas to Explore
+
 ## Role-Relevant Notes
+
 ### Developer
+
 ### PM
+
 ### QA
+
 ### DevOps
+
 ## Authoritative References
+
 ## Unknowns and Access Gaps
+
 ## Recommended Next Action
 ```
 

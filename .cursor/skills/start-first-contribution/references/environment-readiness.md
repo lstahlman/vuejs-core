@@ -5,13 +5,13 @@
 
 ## Required baseline
 
-| Item | Expectation |
-|---|---|
-| Node | `>=20` (`engines.node`); `.node-version` is `lts/*` |
+| Item            | Expectation                                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------------------ |
+| Node            | `>=20` (`engines.node`); `.node-version` is `lts/*`                                                    |
 | Package manager | `pnpm` matching `packageManager` (currently `pnpm@11.13.0`); preinstall enforces pnpm via `only-allow` |
-| Install | `pnpm install` (creates workspace links, enables `simple-git-hooks`) |
-| Lockfile | `pnpm-lock.yaml` present |
-| Workspace | `packages/*`, `packages-private/*` |
+| Install         | `pnpm install` (creates workspace links, enables `simple-git-hooks`)                                   |
+| Lockfile        | `pnpm-lock.yaml` present                                                                               |
+| Workspace       | `packages/*`, `packages-private/*`                                                                     |
 
 ## Non-mutating check sequence
 
@@ -33,15 +33,15 @@ pnpm test packages/shared --run
 
 Task-specific additions (only when the selected work needs them):
 
-| Need | Command / note |
-|---|---|
-| Package unit filter | `pnpm test <package-or-file-pattern> --run` or `pnpm test-unit ...` |
-| Types | `pnpm check` |
-| Declaration / public types | `pnpm test-dts` (builds dts first) |
-| E2E / browser | `pnpm test-e2e` (builds first; needs Puppeteer/Playwright Chromium) |
-| SFC Playground | `pnpm dev-sfc` |
-| Template Explorer | `pnpm dev-compiler` |
-| Lint / format | `pnpm lint`, `pnpm format-check` |
+| Need                       | Command / note                                                      |
+| -------------------------- | ------------------------------------------------------------------- |
+| Package unit filter        | `pnpm test <package-or-file-pattern> --run` or `pnpm test-unit ...` |
+| Types                      | `pnpm check`                                                        |
+| Declaration / public types | `pnpm test-dts` (builds dts first)                                  |
+| E2E / browser              | `pnpm test-e2e` (builds first; needs Puppeteer/Playwright Chromium) |
+| SFC Playground             | `pnpm dev-sfc`                                                      |
+| Template Explorer          | `pnpm dev-compiler`                                                 |
+| Lint / format              | `pnpm lint`, `pnpm format-check`                                    |
 
 ## Classification
 

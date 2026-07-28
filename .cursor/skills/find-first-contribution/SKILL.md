@@ -31,7 +31,7 @@ Do not configure credentials. Do not create an MCP server.
 7. Always also inspect a broad page of current open issues (the discovery script’s `unlabeledOrUncategorized` section). Surface:
    - unlabeled issues as **triage-unknown** (missing labels ≠ negative, but also ≠ newcomer endorsement)
    - labeled issues outside known primary/fallback pools as **outside-known-signals**
-   Do not hide these when official queues are empty. Cap confidence and prefer `conditional-maintainer-confirmation` unless body/comments prove otherwise.
+     Do not hide these when official queues are empty. Cap confidence and prefer `conditional-maintainer-confirmation` unless body/comments prove otherwise.
 8. For each promising issue, retrieve full body, comments, labels, assignees, milestone, and **independently** search linked PRs (`gh pr list --repo vuejs/core --state all --search "<n>"` and timeline refs).
 9. Map likely package and validation using built-in search / Explore.
 10. Apply hard exclusions (see reference). Score remaining with the rubric.
@@ -65,6 +65,7 @@ After exclusions, score 0–100 using: maintainer acceptance, scope containment,
 # First-Contribution Candidates
 
 ## Search Basis
+
 - Repository and commit
 - Tracker access method
 - Verification timestamp
@@ -76,6 +77,7 @@ After exclusions, score 0–100 using: maintainer acceptance, scope containment,
 ## Recommended Candidates
 
 ### Candidate
+
 - Issue
 - Status: recommended | conditional-maintainer-confirmation
 - Why it may fit
@@ -89,8 +91,11 @@ After exclusions, score 0–100 using: maintainer acceptance, scope containment,
 - Evidence links
 
 ## Candidates Rejected
+
 ## No-Issue Alternatives Requiring Maintainer Confirmation
+
 ## Access Limitations
+
 ## Recommended Next Step
 ```
 

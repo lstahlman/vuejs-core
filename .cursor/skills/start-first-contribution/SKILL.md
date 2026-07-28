@@ -23,7 +23,7 @@ Optional forms:
 intent: explore | find | start-known | unknown
 interest: string | null
 issue_url_or_number: string | null
-environment_check: true | false  # default true
+environment_check: true | false # default true
 ```
 
 ## Steps
@@ -45,10 +45,15 @@ environment_check: true | false  # default true
 # Vue Core First-Contribution Start
 
 ## Your Intent
+
 ## Orientation Summary
+
 ## Environment Readiness
+
 ## Routed Workflow
+
 ## Result
+
 ## Recommended Next Action
 ```
 
@@ -56,14 +61,14 @@ Detailed discovery or preparation artifacts may follow the wrapper.
 
 ## Failure behavior
 
-| Condition | Behavior |
-|---|---|
-| Wrong repository | Stop; identify expected Vue Core checkout |
-| No terminal | Readiness = Unable to verify; continue read-only orientation |
-| No issue access | Use public browser or ask for URL/export; do not fabricate candidates |
-| No safe candidates | Explain search basis; repository ideas only as maintainer-confirmation requests |
+| Condition                       | Behavior                                                                          |
+| ------------------------------- | --------------------------------------------------------------------------------- |
+| Wrong repository                | Stop; identify expected Vue Core checkout                                         |
+| No terminal                     | Readiness = Unable to verify; continue read-only orientation                      |
+| No issue access                 | Use public browser or ask for URL/export; do not fabricate candidates             |
+| No safe candidates              | Explain search basis; repository ideas only as maintainer-confirmation requests   |
 | Known issue closed or active PR | Do not prepare as new work; offer historical learning mode or return to discovery |
-| Ambiguous intent | Orient, then offer explore / find / start-known |
+| Ambiguous intent                | Orient, then offer explore / find / start-known                                   |
 
 ## Safety
 
